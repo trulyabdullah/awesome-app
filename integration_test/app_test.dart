@@ -11,7 +11,7 @@ void main() {
     testWidgets('Full Sign Up and Sign In flow', (WidgetTester tester) async {
       print('Starting app...');
       app.main();
-      await tester.pumpAndSettle();
+      await tester.pumpAndSettle(const Duration(seconds: 5));
 
       final String email =
           'test${DateTime.now().millisecondsSinceEpoch}@test.com';

@@ -23,15 +23,15 @@ jobs:
         run: flutter pub get
 
       - name: 4. Create google-services.json
-        run: echo "${{ secrets.GOOGLE_SERVICES_JSON }}" > android/app/google-services.json
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" > android/app/google-services.json
 
-      - name: 5. Run integration tests
+      - name: 5. Run integration tests on Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 25
-
-          target: default
-
+          api-level: 33
+          target: google_apis
           arch: x86_64
-
-          script: flutter test -d emulator-5554 integration_test/app_test.dart
+          profile: pixel_6
+          script: |
+            flutter test integration_test/app_test.dart
